@@ -17,46 +17,26 @@
   "d1_databases": [
     {
       "binding": "DB",
+      "database_name": "omnimail-db",
+      "database_id": "d88f300d-fb23-4d66-9738-8f04d3a6ef41",
       "migrations_dir": "migrations",
       "migrations_table": "d1_migrations"
     }
   ],
   "r2_buckets": [
-    {
-      "binding": "MAIL_BUCKET"
-    },
-    {
-      "binding": "BACKUP_BUCKET",
-      "bucket_name": "omni-mail-backups"
-    }
+    { "binding": "MAIL_BUCKET" },
+    { "binding": "BACKUP_BUCKET", "bucket_name": "omni-mail-backups" }
   ],
   "workflows": [
-    {
-      "name": "omni-mail-backup",
-      "binding": "BACKUP_WORKFLOW",
-      "class_name": "OmniMailBackupWorkflow"
-    },
-    {
-      "name": "omni-mail-cleanup",
-      "binding": "CLEANUP_WORKFLOW",
-      "class_name": "OmniMailCleanupWorkflow"
-    }
+    { "name": "omni-mail-backup", "binding": "BACKUP_WORKFLOW", "class_name": "OmniMailBackupWorkflow" },
+    { "name": "omni-mail-cleanup", "binding": "CLEANUP_WORKFLOW", "class_name": "OmniMailCleanupWorkflow" }
   ],
   "queues": {
     "producers": [
-      {
-        "binding": "MAIL_QUEUE",
-        "queue": "omnimail-mail"
-      }
+      { "binding": "MAIL_QUEUE", "queue": "omnimail-mail" }
     ],
     "consumers": [
-      {
-        "queue": "omnimail-mail",
-        "max_batch_size": 1,
-        "max_batch_timeout": 2,
-        "max_retries": 3,
-        "dead_letter_queue": "omnimail-mail-dead"
-      }
+      { "queue": "omnimail-mail", "max_batch_size": 1, "max_batch_timeout": 2, "max_retries": 3, "dead_letter_queue": "omnimail-mail-dead" }
     ]
   },
   "triggers": {
